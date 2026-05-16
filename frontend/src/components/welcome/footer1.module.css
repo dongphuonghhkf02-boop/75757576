@@ -1,0 +1,170 @@
+/* Footer — 1920 × 576, dark bg, 120px padding on all sides */
+.footer {
+  width: 100%;
+  height: 576px;
+  box-sizing: border-box;
+  padding: 120px;
+  background-color: #2c2c27; /* text-black */
+  color: #f9f7f2; /* text-cream */
+  font-family: var(--font-golos-text);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* MAIN GRID — logo + 3 columns. Total inner width = 1920 − 240 = 1680 */
+.mainGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 366px 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.logoIcon {
+  width: 366px;
+  height: 261px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Generic column */
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Right-most column (Контакти + Соц мережі) — pushes social block to bottom */
+.colContacts {
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Title — Bold 18 / 700 / 140% / cream */
+.colTitle {
+  margin: 0;
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 140%; /* 25.2px */
+  color: #f9f7f2;
+}
+
+/* Body text — 18 / 400 / 140% / cream */
+.colText {
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 140%;
+  color: #f9f7f2;
+  font-style: normal;
+}
+
+/* Menu list (Нашим клієнтам) — 24 gap title→first, 29 gap between items */
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0 0; /* 24 between title and first item */
+  display: flex;
+  flex-direction: column;
+  gap: 29px; /* between menu items */
+}
+.menuItem {
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 140%;
+  color: #f9f7f2;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+.menuItem:hover {
+  color: #b3d217;
+}
+
+/* Address & contacts paragraph — 24 from title */
+.colText:not(.menuList) {
+  margin-top: 24px;
+}
+address.colText {
+  margin-top: 24px;
+}
+
+/* Social block — 24 gap between title and icons */
+.socialBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+.socialIcons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  text-decoration: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.socialLink:hover {
+  opacity: 0.78;
+  transform: translateY(-2px);
+}
+.socialIcon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Bottom credits row — pinned to bottom inside footer (above 120 padding) */
+.creditsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 24px;
+  font-size: 14px;
+  line-height: 120%;
+  color: #f9f7f2;
+  opacity: 0.85;
+}
+.copyright {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 120%;
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+}
+.copyrightIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  filter: invert(96%) sepia(6%) saturate(174%) hue-rotate(20deg) brightness(102%) contrast(91%);
+}
+.siteCredit {
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 120%;
+}
+.siteCreditLink {
+  color: inherit;
+  text-decoration: underline;
+  transition: color 0.18s ease;
+}
+.siteCreditLink:hover {
+  color: #b3d217;
+}

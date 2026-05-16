@@ -1,0 +1,30 @@
+[
+  {
+    "content": "Sync GitHub repo into /app (preserve .env files)",
+    "status": "completed"
+  },
+  {
+    "content": "Remove conflicting template files (App.js, App.css, jsconfig.json)",
+    "status": "completed"
+  },
+  {
+    "content": "Install missing yarn deps (typescript, @types/*)",
+    "status": "completed"
+  },
+  {
+    "content": "Verify tsconfig.json + craco css-loader url filter patch already in place",
+    "status": "completed"
+  },
+  {
+    "content": "Restart frontend, verify clean compile",
+    "status": "completed"
+  },
+  {
+    "content": "Screenshot / and /product to verify pixel-perfect render",
+    "status": "completed"
+  },
+  {
+    "content": "Write audit report (architecture, gaps, TODOs)",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,128 @@
+/* ============================================================
+   Section "Нам довіряють"
+   Figma spec:
+     block       : 1920 × 1176 px, bg #F9F7F2, margin-left -2px
+     title       : Golos Text 600 SemiBold, 82px / 120%, -1px tracking,
+                   uppercase, color #2C2C27, top 152px from card,
+                   left/right 609px (centered)
+     logos       : transparent PNGs (no card behind them)
+   ============================================================ */
+.section {
+  position: relative;
+  width: var(--width-1920);
+  height: 1176px;
+  margin-left: -2px;
+  background-color: #f9f7f2;
+  box-sizing: border-box;
+  /* Title pinned at 152px from top, then logos fill the rest */
+  padding: 152px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
+  max-width: 100%;
+}
+
+.title {
+  margin: 0;
+  /* 1920 - 609 - 609 = 702 width, naturally centered by flex */
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-weight: 600;
+  font-size: 82px;
+  line-height: 120%;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #2c2c27;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ---- 3-column × 3-row grid of logos ---- */
+.grid {
+  margin-top: 168px; /* gap title → row 1 */
+  width: 1620px; /* leaves ~150px on each side of the 1920 block */
+  flex: 1; /* fill remaining vertical space inside the 1176 block */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.cell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* logos sit on the cream background — no card, no border, no shadow */
+  background: transparent;
+}
+
+.cell img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  /* keep their natural aspect ratio */
+  object-fit: contain;
+}
+
+/* Per-logo width caps so visual weight is balanced across the row.
+   Numbers tuned against the design screenshot. */
+.logoNibulon       { width: 420px; }
+.logoKernel        { width: 290px; }
+.logoEpicentr      { width: 400px; }
+.logoMhp           { width: 280px; }
+.logoBurgudzhi     { width: 390px; }
+.logoAgroPivden    { width: 460px; }
+.logoKornackih     { width: 270px; }
+
+/* ---- Responsive: keep the design under-scale logic in App.tsx happy ---- */
+@media screen and (max-width: 1400px) {
+  .section {
+    height: auto;
+    min-height: 900px;
+    padding: 99px var(--padding-60) 126px;
+  }
+  .grid {
+    margin-top: 80px;
+    width: 100%;
+    row-gap: 50px;
+  }
+}
+
+@media screen and (max-width: 925px) {
+  .section {
+    padding: var(--padding-64) var(--padding-30) 82px;
+    min-height: 0;
+  }
+  .title {
+    font-size: var(--fs-41);
+    line-height: var(--lh-59);
+    white-space: normal;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    row-gap: 40px;
+    margin-top: 40px;
+  }
+  .logoNibulon, .logoKernel, .logoEpicentr, .logoMhp,
+  .logoBurgudzhi, .logoAgroPivden, .logoKornackih {
+    width: clamp(140px, 30vw, 280px);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .title {
+    font-size: var(--fs-25);
+    line-height: var(--lh-39);
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

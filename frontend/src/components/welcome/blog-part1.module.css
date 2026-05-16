@@ -1,0 +1,43 @@
+/* Section "Блог агронома" */
+.blogPart {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 284px 120px 284px 120px; /* symmetric 284 top/bottom, 120 left/right */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 120px; /* 120 title → cards */
+  text-align: center;
+  font-family: var(--font-golos-text);
+}
+
+/* Title */
+.h2 {
+  margin: 0;
+  font-size: 82px;
+  font-weight: 600;
+  line-height: 120%; /* 98.4px */
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.spanAccent {
+  color: #1b4332; /* brand-accent-secondary-default */
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-weight: 600;
+}
+.spanBlack {
+  color: #2c2c27; /* text-black */
+  font-family: Commissioner, var(--font-commissioner), sans-serif;
+  font-weight: 400;
+}
+
+/* Cards row — 3 cards × 544 + 2 × 24 = 1680 = 1920 − 240 */
+.cardsGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 24px;
+}

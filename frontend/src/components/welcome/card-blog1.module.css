@@ -1,0 +1,107 @@
+/* Card — 544 × 720 */
+.cardBlog {
+  width: 544px;
+  height: 720px;
+  flex: 1 0 0;
+  max-width: 544px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px; /* image → content gap */
+  background: #f9f7f2; /* bg-cream */
+  border: 1px solid #e7ebe7; /* decorative-2 */
+  border-radius: 6px;
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: left;
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  color: #2c2c27;
+}
+
+/* Image — 544 × 459 (top of card, full width edge-to-edge) */
+.imageContainer {
+  width: 100%;
+  height: 459px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Content area — fills remaining 720 − 459 − 32 = 229 px */
+.content {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 24px 24px 24px;
+  box-sizing: border-box;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  align-self: stretch;
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 140%;
+  color: #2c2c27;
+}
+
+.description {
+  margin: 0;
+  display: -webkit-box;
+  max-width: 680px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  align-self: stretch;
+  overflow: hidden;
+  color: #2c2c27;
+  text-overflow: ellipsis;
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 140%; /* 25.2 */
+}
+
+/* "Читати більше" button — right-aligned, label + dark-green icon-circle */
+.readMore {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #2c2c27;
+  transition: transform 0.2s ease;
+}
+.readMore:hover {
+  transform: translateX(2px);
+}
+.readMoreLabel {
+  font-family: "Golos Text", var(--font-golos-text), sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 120%;
+  color: #2c2c27;
+}
+.iconArrow {
+  width: 48px;
+  height: 48px;
+  display: block;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
