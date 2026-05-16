@@ -14,10 +14,10 @@ const Image2: React.FC<Image2Type> = ({ className = "" }) => {
       <div className={styles.imageParent}>
         <img
           className={styles.imageIcon}
-          width={1602}
-          height={828}
-          alt=""
-          src="/image@2x.png"
+          width={1376}
+          height={601}
+          alt="Дерево — відновлення після стресу"
+          src="/tree.png"
         />
         <div className={styles.overlay} />
       </div>
