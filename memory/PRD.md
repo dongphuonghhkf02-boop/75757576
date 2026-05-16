@@ -74,6 +74,16 @@ frontend/
 - Бэкенд — пустой шаблон, эндпоинты под формы заказа / корзину / отзывы ещё не созданы.
 - Реальная корзина / оформление заказа / API-интеграции — на следующих фазах по запросу пользователя.
 
+## История изменений
+### 2026-05-16 — Footer (`/`) приведён к Figma
+- `footer1.module.css`:
+  - `.footer.height: 576 → auto (min-height: 579)` — теперь точно 1920×579.
+  - `.mainGrid.grid-template-columns: 366px 1fr 1fr 1fr → 480px 1fr 1fr 1fr` — даёт 480px от логотипа до колонки «Нашим клієнтам:» (раньше клиенты прилипали к логотипу).
+  - `.mainGrid.min-height: 334px` — растягивает «Контакти+socials» колонку на 73px ниже логотипа, чтобы соц-иконки не были на одном y-уровне с лого.
+  - `.creditsRow.margin-top: 24 → 60` — 60px от соц-иконок до строки «© 2026 / Сайт створено».
+  - Введён wrapper `.logoCol` (flex left-top) в `footer1.tsx`, чтобы лого корректно сидел в первой grid-колонке.
+- Итог: `logo→credits = 73+60 = 133px ✓`, `socials→credits = 60px ✓` — оба значения совпадают с Figma-эталоном.
+
 ## Окружение
 - Preview: https://dev-build-113.preview.emergentagent.com
 - Все сервисы (backend / frontend / mongodb) — RUNNING.

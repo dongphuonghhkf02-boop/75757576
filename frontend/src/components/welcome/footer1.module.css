@@ -1,7 +1,27 @@
-/* Footer — 1920 × 576, dark bg, 120px padding on all sides */
+/* Footer — 1920 × 579, dark bg, 120px padding on all sides
+ * Layout (design px, inside 120/120/120/120 padding => 1680 × 339):
+ *
+ *  ┌─ 1920 ─────────────────────────────────────────────────────┐
+ *  │ 120 │                                                │ 120 │
+ *  │     │  ┌── 480 ──┐  ┌────────── 1200 ────────────┐   │     │
+ *  │     │  │  LOGO   │  │  Col1  │  Col2  │  Col3    │   │     │
+ *  │     │  │         │  │ Нашим  │ Наша   │ Контакти │   │     │
+ *  │     │  │         │  │клієнтам│ адреса │  + socs  │   │     │
+ *  │     │  └─────────┘  └────────────────────────────┘   │     │
+ *  │     │                                                │     │
+ *  │     │  © 2026. Всі права захищено   Сайт створено -  │     │
+ *  │ 120 │                                                │ 120 │
+ *  └────────────────────────────────────────────────────────────┘
+ *
+ *  - Logo column = 480px wide (logo itself 366px → 114px breathing space to Col1).
+ *  - Vertical gap socials → creditsRow = 60px.
+ *  - creditsRow sits at the bottom of the inner area (above 120 bottom padding).
+ *  - Approx 133px between logo bottom and creditsRow top.
+ */
+
 .footer {
   width: 100%;
-  height: 576px;
+  height: 579px;
   box-sizing: border-box;
   padding: 120px;
   background-color: #2c2c27; /* text-black */
@@ -11,34 +31,49 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
 }
 
-/* MAIN GRID — logo + 3 columns. Total inner width = 1920 − 240 = 1680 */
+/* MAIN GRID — logo + 3 info columns.
+ * Total inner width = 1920 − 240 = 1680
+ * Column tracks: 480 (logo+gap) + 3 × 400 (=1200) = 1680
+ *
+ * min-height = 334 ensures the right-most "Контакти+socials" column extends
+ * 73px BELOW the logo's bottom edge (logo is 261 tall). That gives:
+ *   - logo bottom → creditsRow top   = 73 + 60 = 133px  ✓ Figma
+ *   - socials bottom → creditsRow top = 60px            ✓ Figma
+ */
 .mainGrid {
-  flex: 1;
   display: grid;
-  grid-template-columns: 366px 1fr 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 480px 1fr 1fr 1fr;
+  gap: 0;
   align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 334px;
 }
 
+/* LOGO COLUMN — logo image stays 366×261, no flex sizing, no margin */
+.logoCol {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 .logoIcon {
   width: 366px;
   height: 261px;
   object-fit: contain;
   display: block;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-/* Generic column */
+/* Generic info column */
 .col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-/* Right-most column (Контакти + Соц мережі) — pushes social block to bottom */
+/* Right-most column (Контакти + Соц мережі) — socials pinned at bottom */
 .colContacts {
   justify-content: space-between;
   height: 100%;
@@ -52,6 +87,7 @@
   font-weight: 700;
   line-height: 140%; /* 25.2px */
   color: #f9f7f2;
+  display: block;
 }
 
 /* Body text — 18 / 400 / 140% / cream */
@@ -68,10 +104,10 @@
 .menuList {
   list-style: none;
   padding: 0;
-  margin: 24px 0 0 0; /* 24 between title and first item */
+  margin: 24px 0 0 0;
   display: flex;
   flex-direction: column;
-  gap: 29px; /* between menu items */
+  gap: 29px;
 }
 .menuItem {
   font-family: "Golos Text", var(--font-golos-text), sans-serif;
@@ -86,10 +122,7 @@
   color: #b3d217;
 }
 
-/* Address & contacts paragraph — 24 from title */
-.colText:not(.menuList) {
-  margin-top: 24px;
-}
+/* Address & contacts paragraph — 24 from title (manual on tsx) */
 address.colText {
   margin-top: 24px;
 }
@@ -127,17 +160,18 @@ address.colText {
   -webkit-user-drag: none;
 }
 
-/* Bottom credits row — pinned to bottom inside footer (above 120 padding) */
+/* Bottom credits row — 60px gap from end of main grid (socials/menu), pinned to bottom of inner area */
 .creditsRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 24px;
+  margin-top: 60px;
   font-size: 14px;
   line-height: 120%;
   color: #f9f7f2;
-  opacity: 0.85;
+  opacity: 0.9;
+  flex: 0 0 auto;
 }
 .copyright {
   display: inline-flex;

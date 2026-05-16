@@ -18,13 +18,15 @@ const Footer1: React.FC<Footer1Type> = ({
     >
       {/* Main grid: logo + 3 info columns */}
       <div className={styles.mainGrid}>
-        <img
-          className={styles.logoIcon}
-          width={366}
-          height={261}
-          alt="ТАМІС АГРО"
-          src="/logo@2x.png"
-        />
+        <div className={styles.logoCol}>
+          <img
+            className={styles.logoIcon}
+            width={366}
+            height={261}
+            alt="ТАМІС АГРО"
+            src="/logo@2x.png"
+          />
+        </div>
 
         {/* Col 1 — "Нашим клієнтам" */}
         <nav className={styles.col}>
