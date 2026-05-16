@@ -75,6 +75,16 @@ frontend/
 - Реальная корзина / оформление заказа / API-интеграции — на следующих фазах по запросу пользователя.
 
 ## История изменений
+### 2026-05-16 — `/product`: кнопка «Залишити відгук» (SecondaryButton1) приведена к Figma
+- **Корневая причина двух багов**:
+  1. Иконка была телефоном (`Call1` → `Vector3.svg` со stroke white) — компонент один и тот же используется и для «Зателефонуйте мені» и для «Залишити відгук»
+  2. Цвет рамки был оливковый 3px вместо #1B4332 1px — потому что `welcome-global.css` перебивает `figma-global.css`'s `--border-2: 1px solid #1b4332` своим `--border-2: 3px solid var(--bg-green)` (загружается позже)
+- **Фиксы**:
+  - `secondary-button1.tsx`: добавил prop `icon: "phone" | "arrow"` (default "phone"), при `arrow` рендерим `<img src="/Icon-Arrow-Right.svg" 20×20 />`
+  - `secondary-button1.module.css`: заменил `border: var(--border-2)` на явное `border: 1px solid #1b4332` — иммунитет к коллизии переменных + добавил hover-эффект
+  - `frame-component9.tsx`: передал `icon="arrow"` для кнопки «Залишити відгук»
+  - `frame-component6.tsx` (Зателефонуйте мені) — не трогал, иконка телефона остаётся по умолчанию ✓
+
 ### 2026-05-16 — `/product`: блок «Досвід покупців» приведён к Figma
 - `frame-component9.module.css`:
   - `.customersContentWrapper.padding: 0 20px 150px → 320px 120px 150px` — 320px от LogisticsSection до title, 120 left/right

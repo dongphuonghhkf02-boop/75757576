@@ -17,6 +17,9 @@ export type SecondaryButton1Type = {
   secondaryButtonHeight?: any;
   secondaryButtonWidth?: any;
   secondaryButtonAlignSelf?: any;
+
+  /** Icon variant: "phone" (default, used in "Зателефонуйте мені") or "arrow" (used in "Залишити відгук") */
+  icon?: "phone" | "arrow";
 };
 
 const SecondaryButton1: React.FC<SecondaryButton1Type> = ({
@@ -29,6 +32,7 @@ const SecondaryButton1: React.FC<SecondaryButton1Type> = ({
   secondaryButtonWidth,
   secondaryButtonAlignSelf,
   size = 24,
+  icon = "phone",
 }) => {
   const secondaryButtonStyle: CSSProperties = useMemo(() => {
     return {
@@ -43,9 +47,19 @@ const SecondaryButton1: React.FC<SecondaryButton1Type> = ({
       className={[styles.secondaryButton, className].join(" ")}
       data-state={state}
       data-type={type}
+      data-icon={icon}
       style={secondaryButtonStyle}
     >
-      {!!showIcon && <Call1 size={size} />}
+      {!!showIcon && icon === "phone" && <Call1 size={size} />}
+      {!!showIcon && icon === "arrow" && (
+        <img
+          className={styles.arrowIcon}
+          width={20}
+          height={20}
+          alt=""
+          src="/Icon-Arrow-Right.svg"
+        />
+      )}
       <div className={styles.div}>{prop}</div>
     </button>
   );

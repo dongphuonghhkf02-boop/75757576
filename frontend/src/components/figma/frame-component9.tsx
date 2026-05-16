@@ -234,6 +234,7 @@ const FrameComponent9: React.FC<FrameComponent9Type> = ({ className = "" }) => {
               type="Outline"
               prop="Залишити відгук"
               showIcon
+              icon="arrow"
               secondaryButtonHeight="unset"
               secondaryButtonWidth="unset"
               secondaryButtonAlignSelf="stretch"
