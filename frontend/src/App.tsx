@@ -67,11 +67,13 @@ const App: React.FC = () => {
     <div
       style={{
         width: "100%",
+        maxWidth: "100vw",
         height: outerHeight ? `${outerHeight}px` : "auto",
-        // overflow:clip — клипает scaled-контент по бокам, но НЕ создаёт
-        // scroll-context, чтобы position:sticky внутри страниц работал
-        // (например, scroll-driven анимация cards-stack).
-        overflow: "clip",
+        // Use BOTH overflow:hidden (older browsers) and overflow:clip (modern, no scroll context).
+        // The combination ensures absolutely-positioned children that extend beyond design width
+        // (e.g. tree image at design x=2138 > 1920) are always clipped, on every browser.
+        overflow: "hidden",
+        position: "relative",
       }}
     >
       <div

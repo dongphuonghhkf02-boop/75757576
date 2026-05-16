@@ -22,21 +22,26 @@
 
 .image {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  /* Strictly bound to describeSection — clip any child that tries to escape */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
   margin: 0 !important;
   flex-shrink: 0;
   font-family: var(--font-golos-text);
   pointer-events: none;
   z-index: 1;
-  overflow: visible;
+  overflow: hidden;   /* ← key: clip tree image + overlay that overflow right by 218px */
 }
 
 .imageParent {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .imageIcon {
