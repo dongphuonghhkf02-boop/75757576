@@ -75,6 +75,16 @@ frontend/
 - Реальная корзина / оформление заказа / API-интеграции — на следующих фазах по запросу пользователя.
 
 ## История изменений
+### 2026-05-16 — `/product`: блок «Досвід покупців» приведён к Figma
+- `frame-component9.module.css`:
+  - `.customersContentWrapper.padding: 0 20px 150px → 320px 120px 150px` — 320px от LogisticsSection до title, 120 left/right
+  - `.customersContent.gap: 69px → 72px` — gap title → rating/reviews
+  - `.rateContent.padding: 18px 19px → 32px` — внутренний padding rating-card 32 со всех сторон
+  - `.rateContent.gap: 32px` ✓ (между рейтингом и кнопкой «Залишити відгук»)
+  - `.reviewGroup.gap: 24px` ✓ (между карточками отзывов)
+  - `.reviewCard.padding: 32px` ✓ (внутри карточки отзыва)
+- Все отступы совпадают с эталоном Figma.
+
 ### 2026-05-16 — Footer (`/`) приведён к Figma (итерация 2, pixel-perfect)
 Замеры эталонного скриншота Figma через PIL (image 1504×442 → design 1920×564):
 

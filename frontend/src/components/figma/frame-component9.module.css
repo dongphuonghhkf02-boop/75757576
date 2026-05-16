@@ -7,7 +7,12 @@
 .customersContentWrapper {
   align-self: stretch;
   justify-content: center;
-  padding: var(--padding-0) var(--padding-20) 150px;
+  /* Figma:
+   *   • 320px от предыдущего блока (LogisticsSection) до заголовка
+   *   • 120px slева/справа
+   *   • bottom — отступ до следующего блока (combinedProducts) сохраняем
+   */
+  padding: 320px 120px 150px;
   box-sizing: border-box;
   flex-shrink: 0;
   text-align: center;
@@ -18,7 +23,8 @@
 .customersContent {
   width: var(--width-1680);
   flex-direction: column;
-  gap: 69px;
+  /* Figma: 72px между заголовком "Досвід покупців" и блоком отзывов */
+  gap: 72px;
 }
 .h2 {
   margin: 0;
@@ -56,7 +62,9 @@
   border: 1px solid var(--decorative-2);
   box-sizing: border-box;
   flex-direction: column;
-  padding: var(--padding-18) var(--padding-19);
+  /* Figma: внутренний padding 32px со всех сторон */
+  padding: var(--padding-32);
+  /* Figma: 32px между блоком оценки и кнопкой "Залишити відгук" */
   gap: var(--gap-32);
   min-width: 538px;
   text-align: center;
