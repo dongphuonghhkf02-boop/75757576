@@ -1,78 +1,85 @@
-/* Image2 — TREE image with 3 overlay chips, positioned inside describeSection.
+/* Image2 — Tree + 3 glass-chip overlays, EXACT pixel positions from Figma SVG
  *
- * Figma measurements (design px):
- *   • Tree image bbox:     1376 × 601
- *   • Right edge offset:   234 from describeSection right padding edge
- *   • Top edge:            ~17px below the top of the text column / right under tabs
- *   • Tree image source:   /tree.png (1384 × 828, RGBA, transparent bg)
+ *   ╔══════════════════════════ describeSection 1920 × 1395 ═══════════════════════════╗
+ *   ║  (0,0)                                                                            ║
+ *   ║                                                                                   ║
+ *   ║                                                  ┌─────────────────────────────── ║
+ *   ║                                                  │ Tree image                     ║
+ *   ║                                     y=424 ──────►│ x=536 .. 2138 (overflows right)║
+ *   ║                                                  │ y=424 .. 1252  (1602 × 828)    ║
+ *   ║   ─── chips ────────────────────                 │                                ║
+ *   ║   chip1  "Швидке"  : x=1417, y= 576, 382×120     │                                ║
+ *   ║   chip2  "pH"       : x= 790, y= 812, 382×120    │                                ║
+ *   ║   chip3  "Поглинання": x=1417, y=1064, 382×120   │                                ║
+ *   ║                                                  └─────────────────────────────── ║
+ *   ╚═══════════════════════════════════════════════════════════════════════════════════╝
  *
- *   • Chip 1 (Швидке відновлення)        — olive-green glass, white text, lightning icon
- *   • Chip 2 (Ідеальний pH-баланс води)  — dark olive glass,  white text, drop+hand icon
- *   • Chip 3 (Покращення поглинання)     — cream glass,        black text, drop icon
- *
- *   Each chip:  width 382, padding 16, gap 4, border-radius 6, backdrop-filter blur
+ *   White fade-out gradient: x=97, y=597, w=1920, h=684  (transparent→white at bottom)
+ *   All chips: rgba(255,255,255,0.2) + backdrop-filter blur — glass-morphism
+ *   chip1+chip2 text/icon color: #F9F7F2 (cream)
+ *   chip3       text/icon color: #2C2C27 (black)
  */
 
 .image {
   position: absolute;
-  width: 1376px;
-  height: 601px;
-  top: 217px;   /* below the tabs + above the body text — aligns with title baseline */
-  right: 0;     /* anchored to the right inside describeSection */
+  inset: 0;
+  width: 100%;
+  height: 100%;
   margin: 0 !important;
   flex-shrink: 0;
-  text-align: left;
   font-family: var(--font-golos-text);
   pointer-events: none;
   z-index: 1;
+  overflow: visible;
 }
 
 .imageParent {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  pointer-events: none;
 }
 
 .imageIcon {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  left: 536px;
+  top: 424px;
+  width: 1602px;
+  height: 828px;
   object-fit: contain;
-  object-position: right bottom;
+  object-position: left center;
   user-select: none;
   -webkit-user-drag: none;
 }
 
-/* Soft fade-out on the LEFT edge of the image so the tree blends with the white card */
+/* Vertical white fade — transparent at top → white at bottom (per SVG paint0_linear_624_4065) */
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 100%;
-  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-  z-index: 1;
+  left: 97px;
+  top: 597px;
+  width: 1920px;
+  height: 684px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 67.5%, #ffffff 100%);
   pointer-events: none;
+  z-index: 2;
 }
 
-/* ===== Base chip (Figma: w 382, padding 16, gap 4, radius 6) ===== */
+/* ===== Base chip — exact Figma: 382 × 120, padding 16, radius 6, glass bg ===== */
 .chip {
   position: absolute;
   width: 382px;
+  height: 120px;
   padding: 16px;
   box-sizing: border-box;
   display: flex;
   align-items: flex-start;
   gap: 12px;
   border-radius: 6px;
+  background: rgba(255, 255, 255, 0.20);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   z-index: 5;
   pointer-events: auto;
   font-family: var(--font-golos-text);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .chipIcon {
@@ -82,6 +89,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 2px;
 }
 
 .chipText {
@@ -110,37 +118,29 @@
   font-family: var(--font-golos-text);
 }
 
-/* ===== Chip 1 — «Швидке відновлення» — olive-green glass over tree top ===== */
+/* ===== Chip 1 — «Швидке відновлення»  ─── x=1417, y=576 ===== */
 .chip1 {
-  /* Top-right of the tree, slightly inside the image bbox */
-  top: 32px;
-  right: 32px;
-  background: rgba(179, 210, 23, 0.55); /* #B3D217 @ 55% — brand-accent-primary */
-  color: #ffffff;
+  top: 576px;
+  left: 1417px;
 }
-.chip1 .chipTitle { color: #f9f7f2; opacity: 0.92; }
-.chip1 .chipBody  { color: #ffffff; }
+.chip1 .chipTitle,
+.chip1 .chipBody { color: #f9f7f2; }
 .chip1 .chipIcon img { filter: brightness(0) invert(1); }
 
-/* ===== Chip 2 — «Ідеальний pH-баланс води» — dark olive glass, mid-left over canopy ===== */
+/* ===== Chip 2 — «Ідеальний pH-баланс води» ─── x=790, y=812 ===== */
 .chip2 {
-  top: 250px;
-  left: 110px;
-  background: rgba(44, 44, 39, 0.65); /* text-black @ 65% */
-  color: #ffffff;
+  top: 812px;
+  left: 790px;
 }
-.chip2 .chipTitle { color: #f9f7f2; opacity: 0.85; }
-.chip2 .chipBody  { color: #ffffff; }
+.chip2 .chipTitle,
+.chip2 .chipBody { color: #f9f7f2; }
 .chip2 .chipIcon img { filter: brightness(0) invert(1); }
 
-/* ===== Chip 3 — «Покращення поглинання» — cream/white glass, bottom-right under tree ===== */
+/* ===== Chip 3 — «Покращення поглинання» ─── x=1417, y=1064 ===== */
 .chip3 {
-  bottom: 0px;
-  right: 200px;
-  background: rgba(255, 255, 255, 0.85);
-  color: #2c2c27;
-  border: 1px solid rgba(44, 44, 39, 0.06);
+  top: 1064px;
+  left: 1417px;
 }
-.chip3 .chipTitle { color: #93928c; }
-.chip3 .chipBody  { color: #2c2c27; }
+.chip3 .chipTitle,
+.chip3 .chipBody { color: #2c2c27; }
 .chip3 .chipIcon img { filter: brightness(0); }
